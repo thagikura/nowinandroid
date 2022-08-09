@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/setup-java@v3
       with:
-        distribution: 'temurin'
+        distribution: 'adopt'
         java-version: '11'
     - uses: actions/checkout@v2
 
@@ -18,4 +18,5 @@ jobs:
       uses: android-actions/setup-android@v2
 
     - name: Run instrumented tests with GMD
-      run: ./gradlew pixel4Api30DemoDebugAndroidTest -Dorg.gradle.workers.max=1
+      run: ./gradlew pixel4Api30DemoDebugAndroidTest -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect"
+
