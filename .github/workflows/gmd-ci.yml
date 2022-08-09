@@ -14,4 +14,4 @@ jobs:
       uses: docker-android-sdk/android-30@master
       with:
         args: |
-          ./gradlew assembleDebug
+          ./gradlew pixel4Api30DemoDebugAndroidTest
