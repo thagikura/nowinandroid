@@ -11,7 +11,7 @@ jobs:
     - uses: actions/checkout@v1
 
     - name: "Android CI Github Action"
-      uses: docker-android-sdk/android-30@master
+      uses: reactivecircus/android-emulator-runner@v2
       with:
         args: |
           ./gradlew pixel4Api30DemoDebugAndroidTest
