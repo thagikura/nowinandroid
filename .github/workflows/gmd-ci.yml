@@ -13,6 +13,9 @@ jobs:
         distribution: 'temurin'
         java-version: '11'
     - uses: actions/checkout@v2
-    - name: Setup upterm session
-      uses: lhotari/action-upterm@v1
 
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v2
+
+    - name: Run instrumented tests with GMD
+      run: ./gradlew pixel4Api30DemoDebugAndroidTest -Dorg.gradle.workers.max=1 -Pandroid.tenageddevices.emulator.gpu="swiftshader_indirect"
