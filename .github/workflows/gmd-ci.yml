@@ -1,6 +1,8 @@
 name: Android GMD CI
 
-on: [push]
+on: [push, pull_request]
+  pull_request:
+    types: [opened, reopened]
 
 jobs:
 
