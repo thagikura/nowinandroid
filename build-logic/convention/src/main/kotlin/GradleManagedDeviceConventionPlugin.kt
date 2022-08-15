@@ -15,7 +15,6 @@
  */
 
 import com.android.build.api.dsl.LibraryExtension
-import com.google.samples.apps.nowinandroid.configureGradleManagedDevice
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -24,7 +23,18 @@ class GradleManagedDeviceConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             extensions.configure<LibraryExtension> {
-                configureGradleManagedDevice(this)
+                testOptions {
+                    managedDevices {
+                        devices { // Doesn't compile because `devices` doesn't accepts a lambda
+                            maybeCreate<com.android.build.api.dsl.ManagedVirtualDevice>("pixel4Api30").apply {
+                                device = "Pixel 4"
+                                apiLevel = 30
+                                systemImageSource = "aosp-atd"
+                                require64Bit = false
+                            }
+                        }
+                    }
+                }
             }
         }
     }

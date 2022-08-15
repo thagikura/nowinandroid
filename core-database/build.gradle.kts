@@ -22,7 +22,6 @@ plugins {
     id("dagger.hilt.android.plugin")
     alias(libs.plugins.ksp)
     id("nowinandroid.spotless")
-    id("nowinandroid.gradle-managed-device")
 }
 
 android {
@@ -36,18 +35,18 @@ android {
 
         testInstrumentationRunner = "com.google.samples.apps.nowinandroid.core.testing.NiaTestRunner"
     }
-//    testOptions {
-//        managedDevices {
-//            devices {
-//                maybeCreate<com.android.build.api.dsl.ManagedVirtualDevice>("pixel4Api30").apply {
-//                    device = "Pixel 4"
-//                    apiLevel = 30
-//                    systemImageSource = "aosp-atd"
-//                    require64Bit = false
-//                }
-//            }
-//        }
-//    }
+    testOptions {
+        managedDevices {
+            devices {
+                maybeCreate<com.android.build.api.dsl.ManagedVirtualDevice>("pixel4Api30").apply {
+                    device = "Pixel 4"
+                    apiLevel = 30
+                    systemImageSource = "aosp-atd"
+                    require64Bit = false
+                }
+            }
+        }
+    }
 }
 
 dependencies {
