@@ -65,6 +65,10 @@ gradlePlugin {
             id = "nowinandroid.android.test"
             implementationClass = "AndroidTestConventionPlugin"
         }
+        register("gradleManagedDevice") {
+            id = "nowinandroid.gradle-managed-device"
+            implementationClass = "GradleManagedDeviceConventionPlugin"
+        }
         register("spotless") {
             id = "nowinandroid.spotless"
             implementationClass = "SpotlessConventionPlugin"
