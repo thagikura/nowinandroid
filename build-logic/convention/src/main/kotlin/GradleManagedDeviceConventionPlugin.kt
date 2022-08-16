@@ -25,14 +25,6 @@ class GradleManagedDeviceConventionPlugin : Plugin<Project> {
             extensions.configure<LibraryExtension> {
                 testOptions {
                     managedDevices {
-                        devices { // Doesn't compile because `devices` doesn't accepts a lambda
-                            maybeCreate<com.android.build.api.dsl.ManagedVirtualDevice>("pixel4Api30").apply {
-                                device = "Pixel 4"
-                                apiLevel = 30
-                                systemImageSource = "aosp-atd"
-                                require64Bit = false
-                            }
-                        }
                     }
                 }
             }
