@@ -13,6 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import com.android.build.api.dsl.DeviceGroup
+import com.android.build.api.dsl.ManagedVirtualDevice
+
 // TODO: Remove once https://youtrack.jetbrains.com/issue/KTIJ-19369 is fixed
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -34,6 +38,34 @@ android {
         }
 
         testInstrumentationRunner = "com.google.samples.apps.nowinandroid.core.testing.NiaTestRunner"
+    }
+    testOptions {
+        managedDevices {
+            devices {
+                maybeCreate<ManagedVirtualDevice>("pixel4Api30").apply {
+                    device = "Pixel 4"
+                    apiLevel = 30
+                    systemImageSource = "aosp-atd"
+                }
+
+                maybeCreate<ManagedVirtualDevice>("pixel2Api26").apply {
+                    device = "Pixel 2"
+                    apiLevel = 26
+                    systemImageSource = "aosp"
+                }
+
+                maybeCreate<ManagedVirtualDevice>("nexus6Api23").apply {
+                    device = "Nexus 6"
+                    apiLevel = 23
+                    systemImageSource = "aosp"
+                }
+            }
+
+            groups {
+                maybeCreate<DeviceGroup>("phonesApiUpTo30").apply {
+                }
+            }
+        }
     }
 }
 
